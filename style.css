@@ -1,0 +1,55 @@
+/*
+ Theme Name:     kryss-24h
+ Template:       twentytwentyfour
+ Theme URI:      https://github.com/24-timmarsseglingarna/kryss-24h
+ Description:    Wordpress child theme for 24-timmars.nu
+ Text Domain:    kryss-24h
+ Author:         Stefan Pettersson & Martin Björklund
+ Version:        1.0
+*/
+
+@media print {
+    header { display:none; }
+    footer { display:none; }
+    .yoast-breadcrumbs { display:none; }
+    body {
+        font-size: 70%;
+        font-family: Cardo;
+    }
+}
+
+/*
+ * Do not display the horizontal rule that comes directly after a
+ * navigation menu on small devices.  The reason is that the nav menu
+ * is collapsed on these devices.
+ */
+@media (max-width: 599px) {
+    nav + hr {
+        display:none;
+    }
+}
+
+.yoast-breadcrumbs {
+	visibility: hidden;
+}
+
+.page-child .yoast-breadcrumbs {
+	visibility: visible;
+}
+
+
+h1 {
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+h2 {
+	font-size: var(--wp--preset--font-size--large);
+}
+
+h3 {
+	font-size: clamp(1.1rem, 1.1rem + ((1vw - 0.2rem) * 0.767), 1.5rem);
+}			
+
+h4 {
+	font-size: var(--wp--preset--font-size--medium);
+}
