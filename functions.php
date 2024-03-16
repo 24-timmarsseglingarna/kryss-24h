@@ -12,63 +12,13 @@ function kryss_24h_enqueue_styles() {
 add_filter('wp_feed_cache_transient_lifetime',create_function('$a', 'return 1200;')); // Speed upp retrieval of rss feed to widget 20 mins.
 
 
-add_action( 'init', 'create_post_types' );
-
-function create_post_types() {
-    register_post_type( 'kryss_race',
-        array(
-            'labels' => array(
-                'name' => __( 'Seglingar' ),
-                'singular_name' => __( 'Segling' ),
-                'add_new' => __( 'Lägg upp ny'),
-                'add_new_item' => __( 'Lägg upp ny segling'),
-                'edit_item' => __( 'Redigera segling'),
-                'new_item' => __( 'Ny segling'),
-                'view_item' => __( 'Visa segling'),
-                'search_items' => __( 'Sök seglingar'),
-                'not_found' => __( 'Hittar inga seglingar'),
-                'not_found_in_trash' => __( 'Hittar inga seglingar i papperskorgen'),
-                'parent_item_colon' => __( ''),
-            ),
-        'taxonomies' => array('kryss_organizer_tax'),
-        'public' => true,
-        'show_in_rest' => true,
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'rewrite' => array('slug' => 'seglingar'),
-        )
-    );
-
-    register_post_type( 'kryss_result',
-        array(
-            'labels' => array(
-                'name' => __( 'Resultat' ),
-                'singular_name' => __( 'Resultat' ),
-                'add_new' => __( 'Lägg upp nytt'),
-                'add_new_item' => __( 'Lägg upp nytt resultat'),
-                'edit_item' => __( 'Redigera resultat'),
-                'new_item' => __( 'Nytt resultat'),
-                'view_item' => __( 'Visa resultat'),
-                'search_items' => __( 'Sök resultat'),
-                'not_found' => __( 'Hittar inga resultat'),
-                'not_found_in_trash' => __( 'Hittar inga resultat i papperskorgen'),
-                'parent_item_colon' => __( ''),
-            ),
-        'taxonomies' => array('kryss_organizer_tax'),
-        'public' => true,
-        'has_archive' => true,
-        'rewrite' => array('slug' => 'resultat'),
-        )
-    );
-}
-
 
 add_action( 'init', 'create_kryss_race_tax' );
 
 function create_kryss_race_tax() {
     register_taxonomy(
         'kryss_organizer_tax',
-        array( 'kryss_race', 'post', 'page', 'kryss_result' ),
+        array( 'post', 'page' ),
         array(
             'labels' =>
               array(
