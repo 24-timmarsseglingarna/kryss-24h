@@ -66,21 +66,3 @@ function namespace_enqueue_block_variations() {
 
 
 add_action( 'init', 'create_kryss_race_tax' );
-add_action( 'enqueue_block_editor_assets', 'namespace_enqueue_block_variations' );
-
-
-/**
- * Register the Article Categories variation for the Post Terms block.
- */
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation(
-        'core/post-terms',
-        {
-            name: 'article-category',
-    		title: 'Article Categories',
-    		icon: 'category',
-    		isDefault: false,
-    		attributes: { term: 'article-category' },
-        },
-    );
-} );
