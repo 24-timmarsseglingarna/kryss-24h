@@ -73,17 +73,14 @@ add_action( 'enqueue_block_editor_assets', 'namespace_enqueue_block_variations' 
  * Register the Article Categories variation for the Post Terms block.
  */
 wp.domReady( () => {
-
     wp.blocks.registerBlockVariation(
         'core/post-terms',
         {
-            name: 'kryss_organizer_tax',
-    		title: 'Arrangörer',
+            name: 'article-category',
+    		title: 'Article Categories',
     		icon: 'category',
     		isDefault: false,
-    		attributes: { term: 'kryss_organizer_tax' },
+    		attributes: { term: 'article-category' },
         },
     );
-
 } );
-
