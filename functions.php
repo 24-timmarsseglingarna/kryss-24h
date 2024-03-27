@@ -12,9 +12,6 @@ function kryss_24h_enqueue_styles() {
 add_filter('wp_feed_cache_transient_lifetime',create_function('$a', 'return 1200;')); // Speed upp retrieval of rss feed to widget 20 mins.
 
 
-
-add_action( 'init', 'create_kryss_race_tax' );
-
 function create_kryss_race_tax() {
     register_taxonomy(
         'kryss_organizer_tax',
@@ -62,3 +59,31 @@ function disable_self_trackback( &$links ) {
 }
 
 add_action( ‘pre_ping’, ‘disable_self_trackback’ );
+
+function namespace_enqueue_block_variations() {
+	wp_enqueue_script( 'namespace-enqueue-block-variations', get_theme_file_uri( '/register-block-variations.js' ), array( 'wp-blocks', 'wp-dom', 'wp-edit-post' ), wp_get_theme()->get( 'Version' ), true );
+}
+
+
+add_action( 'init', 'create_kryss_race_tax' );
+add_action( 'enqueue_block_editor_assets', 'namespace_enqueue_block_variations' );
+
+
+/**
+ * Register the Article Categories variation for the Post Terms block.
+ */
+wp.domReady( () => {
+
+    wp.blocks.registerBlockVariation(
+        'core/post-terms',
+        {
+            name: 'kryss_organizer_tax',
+    		title: 'Arrangörer',
+    		icon: 'category',
+    		isDefault: false,
+    		attributes: { term: 'kryss_organizer_tax' },
+        },
+    );
+
+} );
+
